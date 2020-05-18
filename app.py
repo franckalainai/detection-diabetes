@@ -29,9 +29,9 @@ def predict():
     prediction = model.predict( sc.transform(final_features) )
 
     if prediction == 1:
-        pred = "You have Diabetes, please consult a Doctor."
+        pred = "Vous avez le diabète, veuillez consulter un medecin."
     elif prediction == 0:
-        pred = "You don't have Diabetes."
+        pred = "Vous n'avez pas le diabète."
     output = pred
 
     return render_template('index.html', prediction_text='{}'.format(output))
