@@ -135,14 +135,11 @@
 
                         <h3>Test de détection du diabète</h3>
                         <br>
-
                         <!--begin form-->
                         <div>
-                             
                             <!--begin success message -->
                             <p class="register_success_box" style="display:none;"></p>
                             <!--end success message -->
-                            <h1 style="color: #000;">Détection Diabetes</h1>
                             <form action="{{ url_for('predict')}}"method="post">
                               <div class="form-group">
                                 <input class="form-control" type="text" name="Glucose Level" placeholder="Taux de glycémie" required="required" />
