@@ -1,37 +1,469 @@
 <!DOCTYPE html>
-<html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<html lang="zxx">
+
 <head>
- <meta charset="UTF-8">
- <title>Diabetes Detection</title>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <title>DETECTEUR DIABETE</title>
+    
+    <!-- Loading Bootstrap -->
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Loading Template CSS -->
+    <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+   
+    <link href="{{ url_for('static', filename='assets/css/animate.css') }}" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/pe-icon-7-stroke.css') }}">
+   
+    <link href="{{ url_for('static', filename='assets/css/style-magnific-popup.css') }}" rel="stylesheet">
+  
+
+    <!-- Awsome Fonts -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/all.min.css') }}">
+
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    
 </head>
+
 <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-         <img src="/static/img/depistage.jpg" class="img-responsive" width="100%">
-          </div>
-        <div class="col-md-6 col-sm-12">
-         <br>
-            <h1 style="color: #000;">Détection Diabetes</h1>
-              <form action="{{ url_for('predict')}}"method="post">
-                <div class="form-group">
-                  <input class="form-control" type="text" name="Glucose Level" placeholder="Taux de glucose" required="required" />
-                <!--<input class="form-control" type="text" name="Insulin" placeholder="Taux d'insuline" required="required" />-->
-                  <input class="form-control" type="text" name="BMI" placeholder="IMC(kg/m²)" required="required" />
-                  <input class="form-control" type="text" name="Age" placeholder="Age" required="required" />        
-                  <button type="submit" class="btn btn-primary btn-block btn-large">Détecter</button>
+
+    <!--begin header -->
+    <header class="header">
+
+        <!--begin navbar-fixed-top -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            
+            <!--begin container -->
+            <div class="container">
+
+                <!--begin navbar -->
+                <nav class="navbar navbar-expand-lg">
+
+                    <!--begin logo -->
+                    <a class="navbar-brand" href="#">DETECTEUR DIABETE</a>
+                    <!--end logo -->
+
+                    <!--begin navbar-toggler -->
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+                    </button>
+                    <!--end navbar-toggler -->
+
+                    <!--begin navbar-collapse -->
+                    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+                        
+                        <!--begin navbar-nav -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <li><a href="#home">Accueil</a></li>
+
+                            <li><a href="#services">Astuces santé</a></li>
+
+                            <li><a href="#">A propos de nous</a></li>
+                            <li><a href="#">Témoignages</a></li>
+
+                            <li class="discover-link"><a href="#" class="external discover-btn">Nous contacter</a></li>
+
+                        </ul>
+                        <!--end navbar-nav -->
+
+                    </div>
+                    <!--end navbar-collapse -->
+
+                </nav>
+                <!--end navbar -->
+
+            </div>
+    		<!--end container -->
+            
+        </nav>
+    	<!--end navbar-fixed-top -->
+        
+    </header>
+    <!--end header -->
+
+    <!--begin home section -->
+    <section class="home-section" id="home">
+
+        <div class="home-section-overlay"></div>
+
+        <!--begin container -->
+        <div class="container">
+
+            <!--begin row -->
+            <div class="row">
+              
+                <!--begin col-md-5-->
+                <div class="col-md-6">
+
+                    <h1 class="padding-top-150"></h1>
+
+                    <p class="hero-text">Première applicaton gratuite de dépistage du diabète</p>
+
+                    <!--begin home-benefits -->
+                    <ul class="home-benefits">
+
+                        <li><i class="fas fa-check-circle"></i>Fiable</li>
+
+                        <li><i class="fas fa-check-circle"></i>Sécurisée</li>
+
+                        <li><i class="fas fa-check-circle"></i>Dotée d'une Intelligence Artificielle</li>
+
+                    </ul>
+                    <!--end home-benefits -->
+
                 </div>
-              </form>
-          <h3 style="color:#000">{{ prediction_text }}</h3>
+                <!--end col-md-5-->
+
+                <!--begin col-md-2-->
+                <div class="col-md-1"></div>
+                <!--end col-md-2-->
+           
+                <!--begin col-md-5-->
+                <div class="col-md-5 margin-top-20">
+
+                    <!--begin register-form-wrapper-->
+                    <div class="register-form-wrapper wow bounceIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: bounceIn;">
+
+                        <h3>Test de détection du diabète</h3>
+                        <br>
+
+                        <!--begin form-->
+                        <div>
+                             
+                            <!--begin success message -->
+                            <p class="register_success_box" style="display:none;"></p>
+                            <!--end success message -->
+                            
+                            <!--begin register form -->
+                            <form id="register-form" class="register-form register" action="{{ url_for('predict')}}"method="post">
+                                
+                    
+                                <input class="register-input name-input white-input" required="" name="register_names" placeholder="Taux de glycémie* - (g/dL) " type="text">
+                            
+                                <input class="register-input name-email white-input" required="" name="register_email" placeholder="Taux d'insuline* - (mu U/ml)" type="email">
+
+                                <input class="register-input name-email white-input" required="" name="register_email" placeholder="IMC(kg/m²)*" type="email">
+
+                                <input class="register-input name-email white-input" required="" name="register_email" placeholder="Age*" type="email">
+
+                                <input value="Détecter" class="register-submit" type="submit">
+                                    
+                            </form>
+                            <!--end register form -->
+
+                            <p class="register-form-terms">{{ prediction_text }}</p>
+                            
+                        </div>
+                        <!--end form-->
+
+                    </div>
+                    <!--end register-form-wrapper-->
+
+                </div>
+                <!--end col-md-5-->
+
+            </div>
+            <!--end row -->
+
         </div>
+        <!--end container -->
+
+    </section>
+    <!--end home section -->
+
+    <!--begin top-cta-blue -->
+    <section class="top-cta-blue small-paddings">
+
+        <!--begin container -->
+        <div class="container">
+
+            <!--begin row -->
+            <div class="row">
+
+                <!--begin col-md-3 -->
+                <div class="col-md-3">
+
+                    <span><i class="far fa-clock"></i></span>
+                
+                    <h5 class="white-text">Disponible</h5>
+
+                    <p class="white-text">24H/7</p>
+
+                </div>
+                <!--end col-md-3 -->
+
+                <!--begin col-md-3 -->
+                <div class="col-md-3">
+
+                    <span><i class="fas fa-phone"></i></span>
+
+                    <h5 class="white-text">Telephone</h5>
+
+                    <p class="white-text">+225 09 63 82 08</p>
+                    
+                </div>
+                <!--end col-md-3 -->
+
+                <!--begin col-md-3 -->
+                <div class="col-md-3">
+
+                    <span><i class="far fa-envelope-open"></i></span>
+
+                    <h5 class="white-text">Email</h5>
+
+                    <p class="white-text">k.franckalain@gmail.com</p>
+                    
+                </div>
+                <!--end col-md-3 -->
+
+                <!--begin col-md-3 -->
+                <div class="col-md-3">
+
+                    <span><i class="fas fa-map-marker-alt"></i></span>
+
+                    <h5 class="white-text">Localisation</h5>
+
+                    <p class="white-text">Abidja, Cocody Angré</p>
+                    
+                </div>
+                <!--end col-md-3 -->
+
+            </div>
+            <!--end row -->
+
+        </div>
+        <!--end container -->
+
+    </section>
+    <!--end top-cta-blue -->
+
+    <!--begin section-grey -->
+    <section class="section-grey" id="services">
+
+        <!--begin container -->
+        <div class="container">
+
+            <!--begin row -->
+            <div class="row">
+
+                <!--begin col-md-12 -->
+                <div class="col-md-12 text-center">
+
+                    <h2 class="section-title">Astuces et conseils</h2>
+
+                    <p class="section-subtitle">Ne mangez ni trop gras ni trop sucré, mangez équilibré</p>
+                    
+                </div>
+                <!--end col-md-12 -->
+
+            </div>
+            <!--end row -->
+
+        </div>
+        <!--end container -->
+
+        <!--begin services-wrapper -->
+        <div class="services-wrapper">
+
+            <!--begin container -->
+            <div class="container">
+
+                <!--begin row -->
+                <div class="row">
+
+                    <!--begin col-md-4 -->
+                    <div class="col-md-4">
+
+                        <div class="main-services">
+
+                            <img src="{{ url_for('static', filename='/assets/images/doc.jpg') }}" class="width-100" alt="pic">
+
+                            <h3><a href="#">Les astuces de Docteur Helena</a></h3>
+
+                            <p>Curabitur quam etsum lacus netum netsum nulatis iaculis etsimun vitaemis etsum nisle varius netsum.</p>
+                            
+                        </div>
+
+                    </div>
+                    <!--end col-md-4 -->
+
+                    <!--begin col-md-4 -->
+                    <div class="col-md-4">
+
+                        <div class="main-services">
+
+                            <img src="{{ url_for('static', filename='/assets/images/n1.jpg') }}" class="width-100" alt="pic">
+
+                            <h3><a href="#">Avoir une alimentation équilibrée</a></h3>
+
+                            <p>Curabitur quam etsum lacus netum netsum nulatis iaculis etsimun vitaemis etsum nisle varius netsum.</p>
+                            
+                        </div>
+
+                    </div>
+                    <!--end col-md-4 -->
+               
+                    <!--begin col-md-4 -->
+                    <div class="col-md-4">
+
+                        <div class="main-services">
+
+                            <img src="{{ url_for('static', filename='/assets/images/po.jpg') }}" class="width-100" alt="pic">
+
+                            <h3><a href="#">Surveiller son poids</a></h3>
+
+                            <p>Curabitur quam etsum lacus netum netsum nulatis iaculis etsimun vitaemis etsum nisle varius netsum.</p>
+                            
+                        </div>
+
+                    </div>
+                    <!--end col-md-4 -->
+
+                </div>
+                <!--end row -->
+                
+            </div>
+            <!--end container -->
+
+        </div>
+        <!--end services-wrapper -->
+
+    </section>
+    <!--end section-grey -->
+
+
+
+    <!--begin contact -->
+    <section class="section-white section-bottom-border" id="contact">
+
+        <!--begin container-->
+        <div class="container">
+
+            <!--begin row-->
+            <div class="row">
+
+
+                <!--begin col-md-6 -->
+                <div class="col-md-12 responsive-bottom-margins">
+
+                    <h4>Trouver un centre de dépistage à proximité</h4>
+
+                    <iframe class="contact-maps wow slideInRight" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.25s; animation-name: slideInRight;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.9050207912896!2d-0.14675028449633118!3d51.514958479636384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ad554c335c1%3A0xda2164b934c67c1a!2sOxford+St%2C+London%2C+UK!5e0!3m2!1sen!2sro!4v1485889312335" width="100%" height="600px" style="border:0" allowfullscreen=""></iframe>
+
+                </div>
+                <!--end col-md-6 -->
+
+            </div>
+            <!--end row-->
+
+      </div>
+      <!--end container-->
+
+    </section>
+    <!--end contact-->
+
+    <!--begin footer -->
+    <div class="footer">
+            
+        <!--begin container -->
+        <div class="container footer-top">
+        
+            <!--begin row -->
+            <div class="row">
+            
+                <!--begin col-md-4 -->
+                <div class="col-md-4 text-center">
+                   
+                    
+                </div>
+                <!--end col-md-4 -->
+                
+                <!--begin col-md-4 -->
+                <div class="col-md-4 text-center">
+                   
+                    <i class="pe-7s-comment"></i>
+
+                    <h5>Social Media</h5>
+
+                    <p>Nous suivre</p>
+                                         
+                    <!--begin footer_social -->
+                    <ul class="footer_social">
+                      <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                    <!--end footer_social -->
+                    
+                </div>
+                <!--end col-md-4 -->
+                
+                <!--begin col-md-4 -->
+                <div class="col-md-4 text-center">
+                   
+                    
+                    
+                </div>
+                <!--end col-md-4 -->
+                
+            </div>
+            <!--end row -->
+
+        </div>
+        <!--end container -->
+                
+        <!--begin container -->
+        <div class="container-fluid footer-bottom px-0">
+        
+            <!--begin row -->
+            <div class="row no-gutters mx-0">
+            
+            
+                <!--begin col-md-12 -->
+                <div class="col-md-12 text-center">
+                   
+                    <p>© 2020 <span class="template-name">DETECTEUR DIABETE</span> - Tous droits réservés</p>
+                    
+                </div>
+                <!--end col-md-6 -->
+                
+            </div>
+            <!--end row -->
+            
+        </div>
+        <!--end container -->
+                
     </div>
-  </div>
+    <!--end footer -->
+
+
+<!-- Load JS here for greater good =============================-->
+<script src="{{ url_for('static', filename='assets/js/jquery-3.3.1.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/jquery.scrollTo-min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/jquery.magnific-popup.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/jquery.nav.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/wow.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/plugins.js') }}"></script>
+
+<script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+
+
+
 </body>
 </html>
