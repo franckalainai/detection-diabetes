@@ -145,16 +145,14 @@
                             
                             <!--begin register form -->
                             <form id="register-form" class="register-form register" action="{{ url_for('predict')}}"method="post">
-                                
-                    
-                                <input class="register-input name-input white-input" required="" name="register_names" placeholder="Taux de glycémie* - (g/dL) " type="text">
+                                <input class="register-input name-input white-input" required="" placeholder="Taux de glycémie* - (g/dL) " type="text">
                             
-                                <input class="register-input name-input white-input" required="" name="register_email" placeholder="Taux d'insuline* - (mu U/ml)" type="email">
+                                <input class="register-input name-input white-input" required="" placeholder="Taux d'insuline* - (mu U/ml)" type="text">
 
-                                <input class="register-input name-input white-input" required="" name="register_email" placeholder="IMC(kg/m²)*" type="email">
+                                <input class="register-input name-input white-input" required="" placeholder="IMC(kg/m²)*" type="text">
 
-                                <input class="register-input name-input white-input" required="" name="register_email" placeholder="Age*" type="email">
-
+                                <input class="register-input name-input white-input" required="" placeholder="Age*" type="text">                   
+                                
                                 <input value="Détecter" class="register-submit" type="submit">
                                     
                             </form>
