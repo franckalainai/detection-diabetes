@@ -142,23 +142,23 @@
                             <!--begin success message -->
                             <p class="register_success_box" style="display:none;"></p>
                             <!--end success message -->
-                            
-                            <!--begin register form -->
-                            <form id="register-form" class="register-form register" action="{{ url_for('predict')}}"method="post">
-                                <input class="register-input name-input white-input" required="" placeholder="Taux de glycémie* - (g/dL) " type="text">
-                            
-                                <input class="register-input name-input white-input" required="" placeholder="Taux d'insuline* - (mu U/ml)" type="text">
-
-                                <input class="register-input name-input white-input" required="" placeholder="IMC(kg/m²)*" type="text">
-
-                                <input class="register-input name-input white-input" required="" placeholder="Age*" type="text">                   
+                            <h1 style="color: #000;">Détection Diabetes</h1>
+                            <form action="{{ url_for('predict')}}"method="post">
+                              <div class="form-group">
+                                <input class="form-control" type="text" name="Glucose Level" placeholder="Taux de glycémie" required="required" />
+                                <label></label>
+                                <input class="form-control" type="text" name="Insulin" placeholder="Taux d'insuline" required="required" />
                                 
-                                <input value="Détecter" class="register-submit" type="submit">
-                                    
+                                <label></label>
+                                <input class="form-control" type="text" name="BMI" placeholder="IMC(kg/m²)" required="required" />
+                                <label></label>
+                                <input class="form-control" type="text" name="Age" placeholder="Age" required="required" />
+                                <label></label>
+                        
+                                <button type="submit" class="btn btn-primary btn-block btn-large">Détecter</button>
+                              </div>
                             </form>
-                            <!--end register form -->
-
-                            <p class="register-form-terms">{{ prediction_text }}</p>
+                              {{ prediction_text }}
                             
                         </div>
                         <!--end form-->
